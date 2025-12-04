@@ -31,3 +31,7 @@ node_modules/
 .drafts/
 .personal/
 .notes/
+
+# Temporary artifact files
+*.resolved
+walkthrough.md.resolved
