@@ -1,5 +1,9 @@
 # Memory Bank System for Antigravity
 
+[![GitHub release](https://img.shields.io/github/release/feodus/antigravity-memory-bank.svg)](https://github.com/feodus/antigravity-memory-bank/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/feodus/antigravity-memory-bank.svg)](https://github.com/feodus/antigravity-memory-bank/stargazers)
+
 Comprehensive documentation and templates for implementing the Memory Bank system in Antigravity-powered projects.
 
 ## 📁 Repository Structure
