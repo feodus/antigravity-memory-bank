@@ -1,0 +1,33 @@
+# Antigravity Memory Bank
+
+# macOS system files
+.DS_Store
+*.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test installations (don't commit test runs)
+test-install/
+.test-*
+tmp/
+temp/
+
+# Node modules if testing locally
+node_modules/
+
+# Environment files (SECURITY)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Personal notes or drafts
+.drafts/
+.personal/
+.notes/

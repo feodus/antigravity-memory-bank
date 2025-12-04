@@ -1,0 +1,32 @@
+{
+  "name": "antigravity-memory-bank",
+  "version": "1.0.0",
+  "description": "Memory Bank system for Antigravity AI agent - persistent project knowledge across sessions",
+  "keywords": [
+    "antigravity",
+    "ai-agent",
+    "memory-bank",
+    "project-knowledge",
+    "documentation",
+    "agent-rules"
+  ],
+  "main": "install.sh",
+  "scripts": {
+    "install": "./install.sh",
+    "help": "cat INSTALLATION.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feodus/antigravity-memory-bank.git"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "files": [
+    "workflows/",
+    "templates/",
+    "install.sh",
+    "README.md",
+    "INSTALLATION.md",
+    "antigravity-memory-bank.md"
+  ]
+}
