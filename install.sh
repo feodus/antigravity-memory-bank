@@ -26,7 +26,7 @@ echo ""
 if [ ! -d ".git" ] && [ ! -f "package.json" ] && [ ! -f "go.mod" ] && [ ! -f "Cargo.toml" ]; then
     echo -e "${YELLOW}⚠️  Warning: Doesn't look like project root${NC}"
     echo -e "   Continue installation here? (y/n)"
-    read -r response
+    read -r response </dev/tty
     if [[ ! "$response" =~ ^[Yy]$ ]]; then
         echo -e "${RED}✗ Installation cancelled${NC}"
         exit 1
@@ -83,13 +83,51 @@ copy_workflows() {
     fi
 }
 
+# Copy documentation files
+copy_documentation() {
+    echo ""
+    echo -e "${BLUE}→ Copying documentation files...${NC}"
+    
+    # Main rule file
+    if [ -f "$SOURCE_DIR/antigravity-memory-bank.md" ]; then
+        cp "$SOURCE_DIR/antigravity-memory-bank.md" .
+        echo -e "${GREEN}  ✓ antigravity-memory-bank.md${NC}"
+    fi
+    
+    # Documentation files
+    if [ -f "$SOURCE_DIR/README.md" ]; then
+        cp "$SOURCE_DIR/README.md" .agent/memory/
+        echo -e "${GREEN}  ✓ README.md${NC}"
+    fi
+    
+    if [ -f "$SOURCE_DIR/INSTALLATION.md" ]; then
+        cp "$SOURCE_DIR/INSTALLATION.md" .agent/memory/
+        echo -e "${GREEN}  ✓ INSTALLATION.md${NC}"
+    fi
+    
+    if [ -f "$SOURCE_DIR/QUICKSTART.md" ]; then
+        cp "$SOURCE_DIR/QUICKSTART.md" .agent/memory/
+        echo -e "${GREEN}  ✓ QUICKSTART.md${NC}"
+    fi
+    
+    if [ -f "$SOURCE_DIR/GITHUB_SETUP.md" ]; then
+        cp "$SOURCE_DIR/GITHUB_SETUP.md" .agent/memory/
+        echo -e "${GREEN}  ✓ GITHUB_SETUP.md${NC}"
+    fi
+    
+    if [ -f "$SOURCE_DIR/CONTRIBUTING.md" ]; then
+        cp "$SOURCE_DIR/CONTRIBUTING.md" .agent/memory/
+        echo -e "${GREEN}  ✓ CONTRIBUTING.md${NC}"
+    fi
+}
+
 # Create initial memory files (optional)
 create_initial_files() {
     echo ""
     echo -e "${BLUE}→ Create initial memory files?${NC}"
     echo -e "  (Recommended to use ${YELLOW}/init-memory${NC} workflow for automatic analysis)"
     echo -e "  Create templates now? (y/n)"
-    read -r response
+    read -r response </dev/tty
     
     if [[ "$response" =~ ^[Yy]$ ]]; then
         echo -e "${BLUE}  Copying templates...${NC}"
@@ -123,7 +161,7 @@ update_gitignore() {
     echo -e "${BLUE}→ Add .agent/memory/ to .gitignore?${NC}"
     echo -e "  (Recommended to commit memory files for team collaboration)"
     echo -e "  Add to .gitignore? (y/n)"
-    read -r response
+    read -r response </dev/tty
     
     if [[ "$response" =~ ^[Yy]$ ]]; then
         if [ -f ".gitignore" ]; then
@@ -158,7 +196,7 @@ main() {
     echo -e "  1) GitHub (download latest version)"
     echo -e "  2) Local files (use current directory)"
     echo -n "Your choice (1/2): "
-    read -r choice
+    read -r choice </dev/tty
     
     case $choice in
         1)
@@ -176,6 +214,7 @@ main() {
     # Run installation steps
     create_structure
     copy_workflows
+    copy_documentation
     create_initial_files
     update_gitignore
     
@@ -200,7 +239,7 @@ main() {
     echo ""
     echo -e "  4. Start working! Memory will load automatically"
     echo ""
-    echo -e "${BLUE}📚 Documentation: ${YELLOW}README.md${NC}"
+    echo -e "${BLUE}📚 Documentation: ${YELLOW}.agent/memory/README.md${NC}"
     echo ""
 }
 
