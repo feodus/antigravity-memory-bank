@@ -1,120 +1,120 @@
 # Contributing to Antigravity Memory Bank
 
-Спасибо за интерес к проекту! 🎉
+Thank you for your interest in the project! 🎉
 
-## 🤝 Как внести вклад
+## 🤝 How to Contribute
 
-### 1. Fork репозитория
+### 1. Fork the Repository
 
 ```bash
-# Форкните через GitHub UI, затем клонируйте
+# Fork via GitHub UI, then clone
 git clone https://github.com/YOUR_USERNAME/antigravity-memory-bank.git
 cd antigravity-memory-bank
 ```
 
-### 2. Создайте feature branch
+### 2. Create a Feature Branch
 
 ```bash
 git checkout -b feature/your-feature-name
-# или
+# or
 git checkout -b fix/your-bug-fix
 ```
 
-### 3. Внесите изменения
+### 3. Make Your Changes
 
-Следуйте существующему стилю кода и документации:
+Follow the existing code and documentation style:
 
-- Шаблоны должны быть понятными и лаконичными
-- Workflow файлы должны содержать четкие инструкции
-- Документация должна быть актуальной
+- Templates should be clear and concise
+- Workflow files should contain clear instructions
+- Documentation should be up-to-date
 
-### 4. Протестируйте
+### 4. Test Your Changes
 
 ```bash
-# Протестируйте установку локально
+# Test installation locally
 ./install.sh
 
-# Проверьте, что все файлы создаются корректно
+# Verify all files are created correctly
 ls -la .agent/memory/
 ls -la .agent/workflows/
 ```
 
-### 5. Создайте Pull Request
+### 5. Create a Pull Request
 
-- Опишите, что изменено и почему
-- Приложите скриншоты (если применимо)
-- Укажите связанные issues
+- Describe what changed and why
+- Attach screenshots (if applicable)
+- Reference related issues
 
 ## 📋 Development Setup
 
 ```bash
-# Клонируйте ваш fork
+# Clone your fork
 git clone your-fork
 cd antigravity-memory-bank
 
-# Внесите изменения
+# Make changes
 # ...
 
-# Тестируйте установочный скрипт
+# Test installation script
 ./install.sh
 ```
 
-## 🎯 Приоритеты для вклада
+## 🎯 Contribution Priorities
 
-### Высокий приоритет
+### High Priority
 
-- 🐛 Исправление багов в install.sh
-- 📝 Улучшение документации
-- 🧩 Новые шаблоны для распространенных сценариев
-- 🔧 Улучшение workflow файлов
+- 🐛 Bug fixes in install.sh
+- 📝 Documentation improvements
+- 🧩 New templates for common scenarios
+- 🔧 Workflow file improvements
 
-### Средний приоритет
+### Medium Priority
 
-- ✨ Новые фичи для скрипта установки
-- 🌐 Переводы документации
-- 📊 Примеры использования
+- ✨ New features for installation script
+- 🌐 Documentation translations
+- 📊 Usage examples
 
-### Низкий приоритет
+### Low Priority
 
-- 🎨 Косметические изменения
-- 📖 Дополнительная документация
+- 🎨 Cosmetic changes
+- 📖 Additional documentation
 
 ## ✅ Guidelines
 
-### Шаблоны (templates/)
+### Templates (templates/)
 
-- Должны быть понятны начинающим
-- Содержать примеры и комментарии
-- Следовать единому формату
+- Should be understandable for beginners
+- Contain examples and comments
+- Follow consistent format
 
 ### Workflows (workflows/)
 
-- Четкие пошаговые инструкции
-- Указывать ожидаемые результаты
-- Документировать возможные проблемы
+- Clear step-by-step instructions
+- Specify expected results
+- Document potential issues
 
-### Скрипт установки (install.sh)
+### Installation Script (install.sh)
 
-- Тестировать на macOS и Linux
-- Проверять edge cases
-- Добавлять понятные сообщения об ошибках
+- Test on macOS and Linux
+- Check edge cases
+- Add clear error messages
 
-### Документация
+### Documentation
 
-- Обновлять при изменении функциональности
-- Проверять ссылки
-- Использовать ясный язык
+- Update when functionality changes
+- Check links
+- Use clear language
 
-## 🔍 Процесс ревью
+## 🔍 Review Process
 
-1. Автоматические проверки (если настроены)
-2. Code review от мейнтейнеров
-3. Обсуждение и итерации
-4. Merge после одобрения
+1. Automated checks (if configured)
+2. Code review from maintainers
+3. Discussion and iterations
+4. Merge after approval
 
 ## 📝 Commit Messages
 
-Используйте conventional commits:
+Use conventional commits:
 
 ```
 feat: add new template for API documentation
@@ -123,16 +123,16 @@ docs: update README with new examples
 chore: update dependencies
 ```
 
-## ❓ Вопросы?
+## ❓ Questions?
 
-- Откройте Issue с вопросом
-- Обсудите в Pull Request
-- Свяжитесь с мейнтейнерами
+- Open an Issue with your question
+- Discuss in Pull Request
+- Contact maintainers
 
-## 📄 Лицензия
+## 📄 License
 
-Внося вклад, вы соглашаетесь, что ваш код будет лицензирован под MIT License.
+By contributing, you agree that your code will be licensed under the MIT License.
 
 ---
 
-Спасибо за ваш вклад! 🙏
+Thank you for your contribution! 🙏

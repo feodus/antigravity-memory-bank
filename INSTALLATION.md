@@ -1,82 +1,82 @@
-# Руководство по установке Memory Bank
+# Memory Bank Installation Guide
 
-Полное руководство по добавлению системы Memory Bank в ваш проект.
+Complete guide for adding the Memory Bank system to your project.
 
-## 📋 Оглавление
+## 📋 Table of Contents
 
-- [Быстрая установка](#быстрая-установка)
-- [Ручная установка](#ручная-установка)
-- [Установка через GitHub](#установка-через-github)
-- [Настройка Antigravity](#настройка-antigravity)
-- [Первый запуск](#первый-запуск)
-- [Проверка установки](#проверка-установки)
+- [Quick Installation](#quick-installation)
+- [Manual Installation](#manual-installation)
+- [GitHub Installation](#github-installation)
+- [Antigravity Configuration](#antigravity-configuration)
+- [First Run](#first-run)
+- [Installation Verification](#installation-verification)
 - [Troubleshooting](#troubleshooting)
 
 ---
 
-## 🚀 Быстрая установка
+## 🚀 Quick Installation
 
-### Вариант 1: Автоматическая установка (рекомендуется)
+### Option 1: Automatic Installation (Recommended)
 
 ```bash
-# Скачайте и запустите скрипт установки
+# Download and run the installation script
 curl -fsSL https://raw.githubusercontent.com/feodus/antigravity-memory-bank/main/install.sh | bash
 
-# Или если файлы уже скачаны локально
+# Or if files are already downloaded locally
 ./install.sh
 ```
 
-Скрипт автоматически:
+The script automatically:
 
-- ✅ Создаст структуру `.agent/workflows/` и `.agent/memory/`
-- ✅ Скопирует необходимые workflow файлы
-- ✅ Предложит создать начальные шаблоны
-- ✅ Настроит `.gitignore` (опционально)
+- ✅ Creates `.agent/workflows/` and `.agent/memory/` structure
+- ✅ Copies necessary workflow files
+- ✅ Offers to create initial templates
+- ✅ Configures `.gitignore` (optional)
 
-### Вариант 2: Клонирование из GitHub
+### Option 2: Clone from GitHub
 
 ```bash
-# 1. Склонируйте репозиторий во временную папку
+# 1. Clone repository to temporary folder
 git clone https://github.com/feodus/antigravity-memory-bank /tmp/mb-temp
 
-# 2. Перейдите в ваш проект
+# 2. Navigate to your project
 cd /path/to/your/project
 
-# 3. Скопируйте необходимые файлы
+# 3. Copy necessary files
 mkdir -p .agent/workflows .agent/memory/patterns
 cp /tmp/mb-temp/workflows/*.md .agent/workflows/
 cp /tmp/mb-temp/templates/common-tasks.md .agent/memory/patterns/
 
-# 4. Удалите временную папку
+# 4. Remove temporary folder
 rm -rf /tmp/mb-temp
 ```
 
 ---
 
-## 🛠️ Ручная установка
+## 🛠️ Manual Installation
 
-### Шаг 1: Создание структуры директорий
+### Step 1: Create Directory Structure
 
 ```bash
-# В корне вашего проекта
+# In your project root
 mkdir -p .agent/workflows
 mkdir -p .agent/memory/patterns
 ```
 
-### Шаг 2: Копирование workflow файлов
+### Step 2: Copy Workflow Files
 
-Скопируйте следующие файлы в `.agent/workflows/`:
+Copy the following files to `.agent/workflows/`:
 
 - [`init-memory.md`](workflows/init-memory.md)
 - [`update-memory.md`](workflows/update-memory.md)
 
 ```bash
-# Если файлы в той же директории
+# If files are in the same directory
 cp workflows/init-memory.md .agent/workflows/
 cp workflows/update-memory.md .agent/workflows/
 ```
 
-### Шаг 3: Создание базового файла patterns
+### Step 3: Create Basic Patterns File
 
 ```bash
 cat > .agent/memory/patterns/common-tasks.md <<'EOF'
@@ -90,20 +90,20 @@ _No tasks documented yet. Use "add task" command after completing repetitive tas
 EOF
 ```
 
-### Шаг 4: (Опционально) Настройка .gitignore
+### Step 4: (Optional) Configure .gitignore
 
-Решите, хотите ли вы коммитить файлы памяти:
+Decide whether you want to commit memory files:
 
-**Вариант A: Коммитить файлы памяти (рекомендуется для команд)**
+**Option A: Commit Memory Files (Recommended for Teams)**
 
-- Не добавляйте `.agent/memory/` в `.gitignore`
-- Файлы памяти будут доступны всей команде
-- Синхронизация знаний между разработчиками
+- Don't add `.agent/memory/` to `.gitignore`
+- Memory files will be available to the entire team
+- Synchronizes knowledge between developers
 
-**Вариант B: Локальные файлы памяти**
+**Option B: Local Memory Files**
 
 ```bash
-# Добавьте в .gitignore
+# Add to .gitignore
 echo "" >> .gitignore
 echo "# Memory Bank files (local only)" >> .gitignore
 echo ".agent/memory/" >> .gitignore
@@ -111,213 +111,213 @@ echo ".agent/memory/" >> .gitignore
 
 ---
 
-## 🌐 Установка через GitHub
+## 🌐 GitHub Installation
 
-### Вариант 1: GitHub Template Repository
+### Option 1: GitHub Template Repository
 
-Создайте template repository для быстрого старта новых проектов:
+Create a template repository for quick start of new projects:
 
-1. **Создайте репозиторий** на GitHub:
+1. **Create a repository** on GitHub:
 
-   - Название: `antigravity-memory-bank`
-   - Включите файлы:
+   - Name: `antigravity-memory-bank`
+   - Include files:
      - `workflows/init-memory.md`
      - `workflows/update-memory.md`
      - `templates/*.md`
      - `install.sh`
      - `README.md`
 
-2. **Сделайте его template**:
+2. **Make it a template**:
 
    - Settings → Template repository ☑️
 
-3. **Использование**:
+3. **Usage**:
 
    ```bash
-   # Для нового проекта
+   # For a new project
    gh repo create my-new-project --template feodus/antigravity-memory-bank
 
-   # Для существующего проекта
+   # For an existing project
    cd my-existing-project
-   ./install.sh  # выберите "GitHub" в меню
+   ./install.sh  # select "GitHub" in the menu
    ```
 
-### Вариант 2: Git Submodule
+### Option 2: Git Submodule
 
-Добавьте Memory Bank как submodule:
+Add Memory Bank as a submodule:
 
 ```bash
-# В корне вашего проекта
+# In your project root
 git submodule add https://github.com/feodus/antigravity-memory-bank .memory-bank-source
 
-# Создайте символические ссылки
+# Create symbolic links
 mkdir -p .agent
 ln -s ../.memory-bank-source/workflows .agent/workflows
 mkdir -p .agent/memory/patterns
 
-# При клонировании проекта
+# When cloning the project
 git clone --recurse-submodules <your-repo>
 ```
 
-### Вариант 3: NPM Package (для Node.js проектов)
+### Option 3: NPM Package (for Node.js Projects)
 
-Можно опубликовать как NPM пакет:
+Can be published as an NPM package:
 
 ```bash
-# Установка
+# Installation
 npm install --save-dev @your-org/antigravity-memory-bank
 
-# В package.json добавьте script
+# Add script to package.json
 {
   "scripts": {
     "setup-memory": "node node_modules/@your-org/antigravity-memory-bank/setup.js"
   }
 }
 
-# Запуск
+# Run
 npm run setup-memory
 ```
 
 ---
 
-## ⚙️ Настройка Antigravity
+## ⚙️ Antigravity Configuration
 
-### Шаг 1: Добавление правил в Antigravity
+### Step 1: Adding Rules to Antigravity
 
-Правила из файла [`antigravity-memory-bank.md`](antigravity-memory-bank.md) нужно добавить в систему Antigravity.
+The rules from [`antigravity-memory-bank.md`](antigravity-memory-bank.md) need to be added to the Antigravity system.
 
-**Способ A: Custom Rules (для пользователя)**
+**Method A: Custom Rules (for User)**
 
-1. Откройте настройки Antigravity
-2. Найдите "Custom Rules" или "User Rules"
-3. Скопируйте содержимое `antigravity-memory-bank.md`
-4. Вставьте в поле Custom Rules
-5. Сохраните
+1. Open Antigravity settings
+2. Find "Custom Rules" or "User Rules"
+3. Copy contents of `antigravity-memory-bank.md`
+4. Paste into Custom Rules field
+5. Save
 
-**Способ B: Project Rules (для проекта)**
+**Method B: Project Rules (for Project)**
 
 ```bash
-# Создайте файл правил в проекте
+# Create rules file in project
 mkdir -p .agent
 cp antigravity-memory-bank.md .agent/RULES.md
 
-# Или создайте .agent/rules/memory-bank.md
+# Or create .agent/rules/memory-bank.md
 mkdir -p .agent/rules
 cp antigravity-memory-bank.md .agent/rules/memory-bank.md
 ```
 
-**Способ C: Global Rules (для системы)**
+**Method C: Global Rules (for System)**
 
-Если у вас есть доступ к системным правилам Antigravity:
+If you have access to Antigravity system rules:
 
-- Добавьте содержимое в системный конфиг
-- Правила будут работать для всех проектов
+- Add contents to system config
+- Rules will work for all projects
 
-### Шаг 2: Проверка подключения правил
+### Step 2: Verify Rules Connection
 
-Спросите Antigravity:
+Ask Antigravity:
 
 ```
-Система Memory Bank подключена?
+Is the Memory Bank system connected?
 ```
 
-Ожидаемый ответ должен упомянуть автоматическую загрузку памяти.
+Expected response should mention automatic memory loading.
 
 ---
 
-## 🎬 Первый запуск
+## 🎬 First Run
 
-### 1. Инициализация Memory Bank
+### 1. Initialize Memory Bank
 
-После установки запустите инициализацию:
+After installation, run initialization:
 
 ```
 /init-memory
 ```
 
-Или прямой запрос:
+Or direct request:
 
 ```
-Инициализируй memory bank для проекта
+Initialize memory bank for the project
 ```
 
-### 2. Что происходит при инициализации?
+### 2. What Happens During Initialization?
 
-Antigravity выполнит:
+Antigravity will:
 
-1. **Анализ проекта** (5-10 минут):
+1. **Project Analysis** (5-10 minutes):
 
-   - Изучит структуру файлов
-   - Проанализирует код
-   - Определит технологии
-   - Выявит паттерны
+   - Study file structure
+   - Analyze code
+   - Identify technologies
+   - Discover patterns
 
-2. **Создание файлов**:
+2. **Create Files**:
 
    ```
    .agent/memory/
-   ├── project-brief.md       ← Вам нужно будет отредактировать
-   ├── product-vision.md      ← Создан автоматически
-   ├── context.md             ← Создан автоматически
-   ├── architecture.md        ← Создан автоматически
-   ├── tech-stack.md          ← Создан автоматически
+   ├── project-brief.md       ← You will need to edit
+   ├── product-vision.md      ← Created automatically
+   ├── context.md             ← Created automatically
+   ├── architecture.md        ← Created automatically
+   ├── tech-stack.md          ← Created automatically
    └── patterns/
-       └── common-tasks.md    ← Пока пустой
+       └── common-tasks.md    ← Empty for now
    ```
 
-3. **Отображение статуса**:
+3. **Display Status**:
 
    ```
    🧠 **Project Memory**: Initialized
-      - Brief: ✓ [описание проекта]
-      - Product: ✓ [описание продукта]
-      - Context: ✓ [текущий фокус]
-      - Architecture: ✓ [архитектура]
-      - Tech Stack: ✓ [технологии]
+      - Brief: ✓ [project description]
+      - Product: ✓ [product description]
+      - Context: ✓ [current focus]
+      - Architecture: ✓ [architecture]
+      - Tech Stack: ✓ [technologies]
       - Patterns: ✓ Ready
    ```
 
-4. **Запрос на ревью**:
-   - Antigravity попросит вас проверить файлы
-   - ВАЖНО: Проверьте и исправьте неточности
+4. **Review Request**:
+   - Antigravity will ask you to check files
+   - IMPORTANT: Review and correct any inaccuracies
 
-### 3. Проверка и корректировка
+### 3. Review and Correction
 
 ```bash
-# Откройте созданные файлы
+# Open created files
 code .agent/memory/
 
-# Особое внимание:
-# - project-brief.md - отредактируйте вручную
-# - product-vision.md - проверьте видение продукта
-# - context.md - проверьте текущий фокус
+# Pay special attention to:
+# - project-brief.md - edit manually
+# - product-vision.md - check product vision
+# - context.md - check current focus
 ```
 
-### 4. Первая задача с Memory Bank
+### 4. First Task with Memory Bank
 
-Попробуйте дать задачу:
+Try giving a task:
 
 ```
-Добавь новый API endpoint для пользователей
+Add new API endpoint for users
 ```
 
-Antigravity должен:
+Antigravity should:
 
-- ✅ Автоматически загрузить память
-- ✅ Показать статус 🧠 **Project Memory**: Active
-- ✅ Подтвердить понимание проекта
-- ✅ Создать plan с учетом архитектуры
+- ✅ Automatically load memory
+- ✅ Show status 🧠 **Project Memory**: Active
+- ✅ Confirm project understanding
+- ✅ Create plan considering architecture
 
 ---
 
-## ✅ Проверка установки
+## ✅ Installation Verification
 
-### Чеклист правильной установки:
+### Correct Installation Checklist:
 
 ```bash
-# 1. Проверьте структуру
+# 1. Check structure
 tree .agent/
-# Должно быть:
+# Should have:
 # .agent/
 # ├── memory/
 # │   └── patterns/
@@ -326,148 +326,148 @@ tree .agent/
 #     ├── init-memory.md
 #     └── update-memory.md
 
-# 2. Проверьте наличие workflow файлов
+# 2. Check workflow files presence
 ls -la .agent/workflows/
-# Должны быть: init-memory.md, update-memory.md
+# Should have: init-memory.md, update-memory.md
 
-# 3. Проверьте права доступа
+# 3. Check access permissions
 test -r .agent/workflows/init-memory.md && echo "✓ Readable"
 
-# 4. Проверьте правила Antigravity
-# (спросите в чате)
+# 4. Check Antigravity rules
+# (ask in chat)
 ```
 
-### Тест функциональности:
+### Functionality Test:
 
-1. **Тест автозагрузки**:
+1. **Auto-load Test**:
 
    ```
-   Начни задачу по рефакторингу кода
+   Start code refactoring task
    ```
 
-   Ожидаемый результат:
+   Expected result:
 
-   - Появляется маркер 🧠 **Project Memory**
-   - Antigravity упоминает понимание проекта
+   - 🧠 **Project Memory** marker appears
+   - Antigravity mentions project understanding
 
-2. **Тест workflows**:
+2. **Workflows Test**:
 
    ```
    /init-memory
    ```
 
-   Ожидаемый результат:
+   Expected result:
 
-   - Antigravity начинает анализ проекта
-   - Создаются файлы в `.agent/memory/`
+   - Antigravity starts project analysis
+   - Files are created in `.agent/memory/`
 
-3. **Тест обновления**:
+3. **Update Test**:
 
    ```
    update memory bank
    ```
 
-   Ожидаемый результат:
+   Expected result:
 
-   - Antigravity проверяет все файлы
-   - Обновляет устаревшую информацию
+   - Antigravity checks all files
+   - Updates outdated information
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Проблема: Memory Bank не загружается автоматически
+### Problem: Memory Bank Not Auto-Loading
 
-**Симптомы**: Нет маркера 🧠 при старте задачи
+**Symptoms**: No 🧠 marker when starting task
 
-**Решения**:
+**Solutions**:
 
-1. Проверьте, что правила Antigravity установлены
-2. Убедитесь, что папка `.agent/memory/` существует
-3. Проверьте, что вы в PLANNING mode
-4. Попробуйте явно: "Загрузи memory bank"
+1. Check that Antigravity rules are installed
+2. Make sure `.agent/memory/` folder exists
+3. Verify you're in PLANNING mode
+4. Try explicitly: "Load memory bank"
 
-### Проблема: Workflow /init-memory не работает
+### Problem: Workflow /init-memory Not Working
 
-**Симптомы**: Команда не распознается
+**Symptoms**: Command not recognized
 
-**Решения**:
+**Solutions**:
 
 ```bash
-# 1. Проверьте наличие файла
+# 1. Check file presence
 ls -la .agent/workflows/init-memory.md
 
-# 2. Проверьте формат (должен быть .md)
+# 2. Check format (should be .md)
 file .agent/workflows/init-memory.md
 
-# 3. Проверьте YAML frontmatter в файле
+# 3. Check YAML frontmatter in file
 head -n 5 .agent/workflows/init-memory.md
-# Должно начинаться с:
+# Should start with:
 # ---
 # description: Initialize project memory bank
 # ---
 ```
 
-### Проблема: Статус показывает "Partial"
+### Problem: Status Shows "Partial"
 
-**Симптомы**:
+**Symptoms**:
 
 ```
 🧠 **Project Memory**: Partial
    - Brief: ⚠️ Missing
 ```
 
-**Решения**:
+**Solutions**:
 
-1. Запустите `/init-memory` для создания отсутствующих файлов
-2. Или создайте файлы вручную из templates/
-3. Проверьте права доступа к `.agent/memory/`
+1. Run `/init-memory` to create missing files
+2. Or create files manually from templates/
+3. Check access permissions to `.agent/memory/`
 
-### Проблема: Файлы памяти не обновляются
+### Problem: Memory Files Not Updating
 
-**Симптомы**: Информация устаревшая после изменений
+**Symptoms**: Information outdated after changes
 
-**Решения**:
+**Solutions**:
 
-1. Явно запросите: "update memory bank"
-2. Проверьте права на запись в `.agent/memory/`
-3. Убедитесь, что не используется read-only файловая система
+1. Explicitly request: "update memory bank"
+2. Check write permissions to `.agent/memory/`
+3. Make sure not using read-only file system
 
-### Проблема: Скрипт install.sh не запускается
+### Problem: install.sh Script Won't Run
 
-**Симптомы**: Permission denied
+**Symptoms**: Permission denied
 
-**Решения**:
+**Solutions**:
 
 ```bash
-# Дайте права на выполнение
+# Give execute permissions
 chmod +x install.sh
 
-# Запустите
+# Run
 ./install.sh
 
-# Или через bash
+# Or through bash
 bash install.sh
 ```
 
-### Проблема: Конфликты в Git
+### Problem: Git Conflicts
 
-**Симптомы**: Merge conflicts в файлах памяти
+**Symptoms**: Merge conflicts in memory files
 
-**Решения**:
+**Solutions**:
 
-1. Для `context.md`: Возьмите самую новую версию
-2. Для других файлов: Мержите вручную
-3. После решения: "update memory bank"
+1. For `context.md`: Take the newest version
+2. For other files: Merge manually
+3. After resolution: "update memory bank"
 
 ---
 
-## 📦 Создание ZIP архива для распространения
+## 📦 Creating ZIP Archive for Distribution
 
-### Для быстрого распространения в команде:
+### For quick distribution within team:
 
 ```bash
-# Создайте архив
+# Create archive
 cd /path/to/antigravity-memory-bank
 zip -r memory-bank-installer.zip \
   workflows/ \
@@ -477,8 +477,8 @@ zip -r memory-bank-installer.zip \
   INSTALLATION.md \
   antigravity-memory-bank.md
 
-# Распространите
-# Коллеги могут:
+# Distribute
+# Colleagues can:
 unzip memory-bank-installer.zip -d /tmp/mb
 cd their-project
 /tmp/mb/install.sh
@@ -486,37 +486,37 @@ cd their-project
 
 ---
 
-## 🎯 Рекомендации
+## 🎯 Recommendations
 
-### Для индивидуальных разработчиков:
+### For Individual Developers:
 
-- ✅ Используйте автоматическую установку через `install.sh`
-- ✅ Коммитьте файлы памяти (полезна история)
-- ✅ Регулярно обновляйте `context.md`
+- ✅ Use automatic installation via `install.sh`
+- ✅ Commit memory files (useful history)
+- ✅ Regularly update `context.md`
 
-### Для команд:
+### For Teams:
 
-- ✅ Создайте GitHub template repository
-- ✅ Коммитьте все файлы памяти для синхронизации знаний
-- ✅ Назначьте ответственного за `project-brief.md`
-- ✅ Регулярные обновления после спринтов
+- ✅ Create GitHub template repository
+- ✅ Commit all memory files for knowledge sync
+- ✅ Assign responsibility for `project-brief.md`
+- ✅ Regular updates after sprints
 
-### Для открытых проектов:
+### For Open Source Projects:
 
-- ✅ Включите Memory Bank в репозиторий
-- ✅ Документируйте в README.md
-- ✅ Помогает новым контрибьюторам быстрее понять проект
-
----
-
-## 📚 Дополнительные ресурсы
-
-- [Основная документация](README.md)
-- [Правила для Antigravity](antigravity-memory-bank.md)
-- [Шаблоны файлов](templates/)
-- [Workflow файлы](workflows/)
+- ✅ Include Memory Bank in repository
+- ✅ Document in README.md
+- ✅ Helps new contributors understand project faster
 
 ---
 
-**Версия документа**: 1.0  
-**Последнее обновление**: 2025-12-03
+## 📚 Additional Resources
+
+- [Main Documentation](README.md)
+- [Antigravity Rules](antigravity-memory-bank.md)
+- [File Templates](templates/)
+- [Workflow Files](workflows/)
+
+---
+
+**Document Version**: 1.0  
+**Last Updated**: 2025-12-03

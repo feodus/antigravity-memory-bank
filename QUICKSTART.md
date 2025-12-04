@@ -1,77 +1,77 @@
-# Быстрый старт: Установка Memory Bank
+# Quick Start: Memory Bank Installation
 
-## 🎯 Три способа установки
+## 🎯 Three Installation Methods
 
-### 1️⃣ Автоматическая установка (самый простой)
+### 1️⃣ Automatic Installation (Easiest)
 
 ```bash
-# Скачайте репозиторий
+# Download repository
 git clone https://github.com/feodus/antigravity-memory-bank
 cd antigravity-memory-bank
 
-# Перейдите в ваш проект
+# Navigate to your project
 cd /path/to/your/project
 
-# Запустите установщик
+# Run installer
 /path/to/antigravity-memory-bank/install.sh
 ```
 
-### 2️⃣ Curl установка (one-liner)
+### 2️⃣ Curl Installation (One-Liner)
 
 ```bash
-# Из вашего проекта
+# From your project
 curl -fsSL https://raw.githubusercontent.com/feodus/antigravity-memory-bank/main/install.sh | bash
 ```
 
-### 3️⃣ Ручная установка (максимальный контроль)
+### 3️⃣ Manual Installation (Maximum Control)
 
 ```bash
-# В вашем проекте
+# In your project
 mkdir -p .agent/workflows .agent/memory/patterns
 
-# Скачайте workflow файлы
+# Download workflow files
 curl -o .agent/workflows/init-memory.md https://raw.githubusercontent.com/.../init-memory.md
 curl -o .agent/workflows/update-memory.md https://raw.githubusercontent.com/.../update-memory.md
 
-# Создайте базовый файл
+# Create basic file
 echo "# Common Tasks\n\n_No tasks yet._" > .agent/memory/patterns/common-tasks.md
 ```
 
 ---
 
-## ⚙️ Настройка Antigravity
+## ⚙️ Antigravity Configuration
 
-**Добавьте правила в Antigravity:**
+**Add rules to Antigravity:**
 
-1. Откройте `antigravity-memory-bank.md`
-2. Скопируйте всё содержимое
-3. Вставьте в Custom Rules вашего Antigravity
-4. Сохраните
+1. Open `antigravity-memory-bank.md`
+2. Copy all contents
+3. Paste into your Antigravity Custom Rules
+4. Save
 
 ---
 
-## 🚀 Первый запуск
+## 🚀 First Run
 
 ```
 /init-memory
 ```
 
-Antigravity проанализирует проект и создаст банк памяти.
+Antigravity will analyze the project and create memory bank.
 
 ---
 
-## ✅ Готово!
+## ✅ Done!
 
-Теперь при каждой новой задаче вы увидите:
+Now with each new task you will see:
 
 ```
 🧠 **Project Memory**: Active
-   - Brief: ✓ [ваш проект]
-   - Product: ✓ [описание]
-   - Context: ✓ [текущий фокус]
+   - Brief: ✓ [your project]
+   - Product: ✓ [description]
+   - Context: ✓ [current focus]
    ...
 ```
 
 ---
 
-📚 **Полная документация**: [INSTALLATION.md](INSTALLATION.md)
+📚 **Full Documentation**: [INSTALLATION.md](INSTALLATION.md)

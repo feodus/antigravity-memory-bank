@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Memory Bank Installation Script
-# Устанавливает систему Memory Bank в текущий проект
+# Installs Memory Bank system into current project
 
 set -e  # Exit on error
 
@@ -18,17 +18,17 @@ TEMP_DIR="/tmp/memory-bank-install-$$"
 
 echo -e "${BLUE}╔════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   Memory Bank Installation Script         ║${NC}"
-echo -e "${BLUE}║   для Antigravity Agent                    ║${NC}"
+echo -e "${BLUE}║   for Antigravity Agent                    ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════╝${NC}"
 echo ""
 
 # Check if we're in a project directory
 if [ ! -d ".git" ] && [ ! -f "package.json" ] && [ ! -f "go.mod" ] && [ ! -f "Cargo.toml" ]; then
-    echo -e "${YELLOW}⚠️  Warning: Не похоже на корень проекта${NC}"
-    echo -e "   Продолжить установку здесь? (y/n)"
+    echo -e "${YELLOW}⚠️  Warning: Doesn't look like project root${NC}"
+    echo -e "   Continue installation here? (y/n)"
     read -r response
     if [[ ! "$response" =~ ^[Yy]$ ]]; then
-        echo -e "${RED}✗ Установка отменена${NC}"
+        echo -e "${RED}✗ Installation cancelled${NC}"
         exit 1
     fi
 fi
@@ -38,12 +38,12 @@ install_from_source() {
     local source_type=$1
     
     if [ "$source_type" = "github" ]; then
-        echo -e "${BLUE}→ Загрузка файлов из GitHub...${NC}"
+        echo -e "${BLUE}→ Downloading files from GitHub...${NC}"
         
         # Clone repository to temp directory
         git clone --depth 1 "$MEMORY_BANK_REPO" "$TEMP_DIR" 2>/dev/null || {
-            echo -e "${RED}✗ Ошибка загрузки из GitHub${NC}"
-            echo -e "${YELLOW}  Попробуйте локальную установку${NC}"
+            echo -e "${RED}✗ Error downloading from GitHub${NC}"
+            echo -e "${YELLOW}  Try local installation${NC}"
             exit 1
         }
         
@@ -52,25 +52,25 @@ install_from_source() {
         # Use local files (assuming script is in the memory bank directory)
         SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
         SOURCE_DIR="$SCRIPT_DIR"
-        echo -e "${BLUE}→ Использование локальных файлов из: $SOURCE_DIR${NC}"
+        echo -e "${BLUE}→ Using local files from: $SOURCE_DIR${NC}"
     fi
 }
 
 # Create directory structure
 create_structure() {
     echo ""
-    echo -e "${BLUE}→ Создание структуры директорий...${NC}"
+    echo -e "${BLUE}→ Creating directory structure...${NC}"
     
     mkdir -p .agent/workflows
     mkdir -p .agent/memory/patterns
     
-    echo -e "${GREEN}✓ Директории созданы${NC}"
+    echo -e "${GREEN}✓ Directories created${NC}"
 }
 
 # Copy workflow files
 copy_workflows() {
     echo ""
-    echo -e "${BLUE}→ Копирование workflow файлов...${NC}"
+    echo -e "${BLUE}→ Copying workflow files...${NC}"
     
     if [ -f "$SOURCE_DIR/workflows/init-memory.md" ]; then
         cp "$SOURCE_DIR/workflows/init-memory.md" .agent/workflows/
@@ -86,13 +86,13 @@ copy_workflows() {
 # Create initial memory files (optional)
 create_initial_files() {
     echo ""
-    echo -e "${BLUE}→ Создать начальные файлы памяти?${NC}"
-    echo -e "  (Рекомендуется использовать ${YELLOW}/init-memory${NC} workflow для автоматического анализа)"
-    echo -e "  Создать шаблоны сейчас? (y/n)"
+    echo -e "${BLUE}→ Create initial memory files?${NC}"
+    echo -e "  (Recommended to use ${YELLOW}/init-memory${NC} workflow for automatic analysis)"
+    echo -e "  Create templates now? (y/n)"
     read -r response
     
     if [[ "$response" =~ ^[Yy]$ ]]; then
-        echo -e "${BLUE}  Копирование шаблонов...${NC}"
+        echo -e "${BLUE}  Copying templates...${NC}"
         
         if [ -d "$SOURCE_DIR/templates" ]; then
             cp "$SOURCE_DIR/templates/project-brief.md" .agent/memory/ 2>/dev/null && echo -e "${GREEN}  ✓ project-brief.md${NC}"
@@ -113,16 +113,16 @@ This file documents repetitive tasks and their workflows.
 
 _No tasks documented yet. Use "add task" command after completing repetitive tasks._
 EOF
-        echo -e "${GREEN}  ✓ patterns/common-tasks.md (пустой)${NC}"
+        echo -e "${GREEN}  ✓ patterns/common-tasks.md (empty)${NC}"
     fi
 }
 
 # Create .gitignore entry (optional)
 update_gitignore() {
     echo ""
-    echo -e "${BLUE}→ Добавить .agent/memory/ в .gitignore?${NC}"
-    echo -e "  (Рекомендуется коммитить файлы памяти для команды)"
-    echo -e "  Добавить в .gitignore? (y/n)"
+    echo -e "${BLUE}→ Add .agent/memory/ to .gitignore?${NC}"
+    echo -e "  (Recommended to commit memory files for team collaboration)"
+    echo -e "  Add to .gitignore? (y/n)"
     read -r response
     
     if [[ "$response" =~ ^[Yy]$ ]]; then
@@ -131,14 +131,14 @@ update_gitignore() {
                 echo "" >> .gitignore
                 echo "# Memory Bank files" >> .gitignore
                 echo ".agent/memory/" >> .gitignore
-                echo -e "${GREEN}  ✓ .gitignore обновлен${NC}"
+                echo -e "${GREEN}  ✓ .gitignore updated${NC}"
             else
-                echo -e "${YELLOW}  ⚠️  Уже присутствует в .gitignore${NC}"
+                echo -e "${YELLOW}  ⚠️  Already present in .gitignore${NC}"
             fi
         else
             echo "# Memory Bank files" > .gitignore
             echo ".agent/memory/" >> .gitignore
-            echo -e "${GREEN}  ✓ .gitignore создан${NC}"
+            echo -e "${GREEN}  ✓ .gitignore created${NC}"
         fi
     fi
 }
@@ -147,17 +147,17 @@ update_gitignore() {
 cleanup() {
     if [ -d "$TEMP_DIR" ]; then
         rm -rf "$TEMP_DIR"
-        echo -e "${BLUE}→ Временные файлы удалены${NC}"
+        echo -e "${BLUE}→ Temporary files removed${NC}"
     fi
 }
 
 # Main installation
 main() {
     # Determine installation source
-    echo -e "${BLUE}Выберите источник установки:${NC}"
-    echo -e "  1) GitHub (загрузить актуальную версию)"
-    echo -e "  2) Локальные файлы (использовать текущую директорию)"
-    echo -n "Ваш выбор (1/2): "
+    echo -e "${BLUE}Choose installation source:${NC}"
+    echo -e "  1) GitHub (download latest version)"
+    echo -e "  2) Local files (use current directory)"
+    echo -n "Your choice (1/2): "
     read -r choice
     
     case $choice in
@@ -168,7 +168,7 @@ main() {
             install_from_source "local"
             ;;
         *)
-            echo -e "${RED}✗ Неверный выбор${NC}"
+            echo -e "${RED}✗ Invalid choice${NC}"
             exit 1
             ;;
     esac
@@ -185,22 +185,22 @@ main() {
     # Success message
     echo ""
     echo -e "${GREEN}╔════════════════════════════════════════════╗${NC}"
-    echo -e "${GREEN}║   ✓ Memory Bank установлен успешно!       ║${NC}"
+    echo -e "${GREEN}║   ✓ Memory Bank installed successfully!   ║${NC}"
     echo -e "${GREEN}╚════════════════════════════════════════════╝${NC}"
     echo ""
-    echo -e "${BLUE}📋 Следующие шаги:${NC}"
+    echo -e "${BLUE}📋 Next steps:${NC}"
     echo ""
-    echo -e "  1. Убедитесь, что правила Antigravity настроены"
-    echo -e "     ${YELLOW}(см. antigravity-memory-bank.md)${NC}"
+    echo -e "  1. Make sure Antigravity rules are configured"
+    echo -e "     ${YELLOW}(see antigravity-memory-bank.md)${NC}"
     echo ""
-    echo -e "  2. Инициализируйте банк памяти:"
+    echo -e "  2. Initialize memory bank:"
     echo -e "     ${YELLOW}/init-memory${NC}"
     echo ""
-    echo -e "  3. Проверьте созданные файлы в ${YELLOW}.agent/memory/${NC}"
+    echo -e "  3. Review created files in ${YELLOW}.agent/memory/${NC}"
     echo ""
-    echo -e "  4. Начните работу! Память будет загружаться автоматически"
+    echo -e "  4. Start working! Memory will load automatically"
     echo ""
-    echo -e "${BLUE}📚 Документация: ${YELLOW}README.md${NC}"
+    echo -e "${BLUE}📚 Documentation: ${YELLOW}README.md${NC}"
     echo ""
 }
 

@@ -1,27 +1,27 @@
 # GitHub Repository Setup Guide
 
-Пошаговое руководство по созданию GitHub репозитория для распространения Memory Bank системы.
+Step-by-step guide for creating a GitHub repository to distribute the Memory Bank system.
 
-## 🎯 Цель
+## 🎯 Goal
 
-Создать публичный GitHub репозиторий, который могут использовать другие разработчики для быстрого добавления Memory Bank в свои проекты.
+Create a public GitHub repository that other developers can use to quickly add Memory Bank to their projects.
 
 ---
 
-## 📋 Шаг 1: Создание репозитория
+## 📋 Step 1: Create Repository
 
-### На GitHub.com:
+### On GitHub.com:
 
-1. **Создайте новый репозиторий**:
+1. **Create new repository**:
 
-   - Название: `antigravity-memory-bank`
+   - Name: `antigravity-memory-bank`
    - Description: "Memory Bank system for Antigravity AI agent - persistent project knowledge"
    - Public ✅
-   - Add README: ❌ (уже есть)
-   - Add .gitignore: ❌ (уже есть)
-   - License: MIT ✅ (уже есть)
+   - Add README: ❌ (already exists)
+   - Add .gitignore: ❌ (already exists)
+   - License: MIT ✅ (already exists)
 
-2. **Клонируйте локально** (если еще не создан):
+2. **Clone locally** (if not already created):
    ```bash
    git clone git@github.com:feodus/antigravity-memory-bank.git
    cd antigravity-memory-bank
@@ -29,21 +29,21 @@
 
 ---
 
-## 📁 Шаг 2: Структура файлов
+## 📁 Step 2: File Structure
 
-Убедитесь, что у вас есть все необходимые файлы:
+Make sure you have all necessary files:
 
 ```
 antigravity-memory-bank/
-├── README.md                     # Главная документация
-├── INSTALLATION.md               # Руководство по установке
-├── QUICKSTART.md                 # Быстрый старт
-├── GITHUB_SETUP.md              # Этот файл
-├── antigravity-memory-bank.md   # Правила для Antigravity
+├── README.md                     # Main documentation
+├── INSTALLATION.md               # Installation guide
+├── QUICKSTART.md                 # Quick start
+├── GITHUB_SETUP.md              # This file
+├── antigravity-memory-bank.md   # Antigravity rules
 ├── LICENSE                       # MIT License
 ├── .gitignore                    # Git ignore
-├── package.json                  # NPM метаданные
-├── install.sh                    # Скрипт установки
+├── package.json                  # NPM metadata
+├── install.sh                    # Installation script
 ├── workflows/
 │   ├── init-memory.md
 │   └── update-memory.md
@@ -58,15 +58,15 @@ antigravity-memory-bank/
 
 ---
 
-## 🔧 Шаг 3: Инициализация Git
+## 🔧 Step 3: Git Initialization
 
 ```bash
-# Если репозиторий новый
+# If repository is new
 git init
 git add .
 git commit -m "Initial commit: Memory Bank system for Antigravity"
 
-# Подключите к GitHub
+# Connect to GitHub
 git remote add origin git@github.com:feodus/antigravity-memory-bank.git
 git branch -M main
 git push -u origin main
@@ -74,65 +74,65 @@ git push -u origin main
 
 ---
 
-## ⚙️ Шаг 4: Настройка Template Repository
+## ⚙️ Step 4: Configure Template Repository
 
-### Сделайте репозиторий шаблоном:
+### Make repository a template:
 
-1. Перейдите в **Settings** вашего репозитория
-2. Найдите раздел **Template repository**
-3. Установите галочку ✅ **Template repository**
-4. Сохраните
+1. Go to **Settings** of your repository
+2. Find **Template repository** section
+3. Check ✅ **Template repository**
+4. Save
 
-**Зачем?** Это позволит создавать новые проекты на основе вашего репозитория через кнопку "Use this template".
+**Why?** This allows creating new projects based on your repository via "Use this template" button.
 
 ---
 
-## 🏷️ Шаг 5: Добавление Topics
+## 🏷️ Step 5: Add Topics
 
-В главной странице репозитория:
+On the repository main page:
 
-1. Нажмите **⚙️** рядом с "About"
-2. Добавьте Topics:
+1. Click **⚙️** next to "About"
+2. Add Topics:
    - `antigravity`
    - `ai-agent`
    - `memory-bank`
    - `documentation`
    - `project-knowledge`
    - `agent-rules`
-3. Сохраните
+3. Save
 
 ---
 
-## 📝 Шаг 6: Создание Release
+## 📝 Step 6: Create Release
 
-### Первый релиз:
+### First release:
 
 ```bash
-# Создайте тег
+# Create tag
 git tag -a v1.0.0 -m "Release v1.0.0: Initial Memory Bank system"
 git push origin v1.0.0
 ```
 
-### На GitHub:
+### On GitHub:
 
-1. Перейдите в **Releases**
+1. Go to **Releases**
 2. **Draft a new release**
-3. Выберите тег `v1.0.0`
+3. Select tag `v1.0.0`
 4. Release title: `v1.0.0 - Initial Release`
 5. Description:
 
    ````markdown
    ## 🎉 Initial Release
 
-   Memory Bank system для Antigravity AI agent.
+   Memory Bank system for Antigravity AI agent.
 
    ### ✨ Features
 
-   - Автоматическая загрузка памяти проекта
-   - Workflow файлы для инициализации и обновления
-   - Шаблоны для всех типов файлов памяти
-   - Скрипт автоматической установки
-   - Полная документация
+   - Automatic project memory loading
+   - Workflow files for initialization and updates
+   - Templates for all memory file types
+   - Automatic installation script
+   - Complete documentation
 
    ### 📦 Installation
 
@@ -143,9 +143,9 @@ git push origin v1.0.0
 
    ### 📚 Documentation
 
-   - [README.md](README.md) - Главная документация
-   - [INSTALLATION.md](INSTALLATION.md) - Руководство по установке
-   - [QUICKSTART.md](QUICKSTART.md) - Быстрый старт
+   - [README.md](README.md) - Main documentation
+   - [INSTALLATION.md](INSTALLATION.md) - Installation guide
+   - [QUICKSTART.md](QUICKSTART.md) - Quick start
 
    ```
 
@@ -155,14 +155,14 @@ git push origin v1.0.0
 
 ---
 
-## 🎁 Шаг 7: Создание ZIP архива
+## 🎁 Step 7: Create ZIP Archive
 
-GitHub автоматически создаст `.zip` и `.tar.gz` при создании release.
+GitHub automatically creates `.zip` and `.tar.gz` when creating release.
 
-Для кастомного архива:
+For custom archive:
 
 ```bash
-# Создайте архив
+# Create archive
 zip -r memory-bank-v1.0.0.zip \
   workflows/ \
   templates/ \
@@ -174,23 +174,23 @@ zip -r memory-bank-v1.0.0.zip \
   LICENSE \
   package.json
 
-# Добавьте как asset к release
+# Add as asset to release
 ```
 
 ---
 
-## 📖 Шаг 8: Обновление README.md
+## 📖 Step 8: Update README.md
 
-Обновите ссылки в `README.md`:
+Update links in `README.md`:
 
 ```bash
-# Замените feodus на ваш username везде
+# Replace feodus with your username everywhere
 sed -i '' 's/feodus/your-actual-username/g' README.md
 sed -i '' 's/feodus/your-actual-username/g' INSTALLATION.md
 sed -i '' 's/feodus/your-actual-username/g' QUICKSTART.md
 sed -i '' 's/feodus/your-actual-username/g' install.sh
 
-# Коммит
+# Commit
 git add .
 git commit -m "Update URLs with actual GitHub username"
 git push
@@ -198,9 +198,9 @@ git push
 
 ---
 
-## 🚀 Шаг 9: Добавление badges в README
+## 🚀 Step 9: Add Badges to README
 
-Добавьте в начало `README.md`:
+Add to the beginning of `README.md`:
 
 ```markdown
 # Memory Bank for Antigravity
@@ -209,30 +209,30 @@ git push
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/feodus/antigravity-memory-bank.svg)](https://github.com/feodus/antigravity-memory-bank/stargazers)
 
-[Остальное содержимое README...]
+[Rest of README content...]
 ```
 
 ---
 
-## 📢 Шаг 10: Публикация
+## 📢 Step 10: Publication
 
-### Поделитесь репозиторием:
+### Share the repository:
 
-1. **В сообществе Antigravity** (если есть)
-2. **На форумах разработчиков**
-3. **В социальных сетях**
-4. **В блоге/статье**
+1. **In Antigravity community** (if exists)
+2. **On developer forums**
+3. **On social media**
+4. **In blog/article**
 
-### Пример поста:
+### Example post:
 
 ```
-🎉 Memory Bank для Antigravity теперь открыт!
+🎉 Memory Bank for Antigravity is now open!
 
-Система персистентной памяти проекта для AI агента Antigravity.
+Persistent project memory system for Antigravity AI agent.
 
-✨ Автоматическая загрузка контекста
-📝 Workflows для управления
-🚀 Установка одной командой
+✨ Automatic context loading
+📝 Management workflows
+🚀 One-command installation
 
 https://github.com/feodus/antigravity-memory-bank
 
@@ -241,32 +241,32 @@ https://github.com/feodus/antigravity-memory-bank
 
 ---
 
-## 🔄 Обновления в будущем
+## 🔄 Future Updates
 
-### При внесении изменений:
+### When making changes:
 
 ```bash
-# 1. Внесите изменения
+# 1. Make changes
 git add .
 git commit -m "feat: add new feature"
 git push
 
-# 2. Создайте новый тег
+# 2. Create new tag
 git tag -a v1.1.0 -m "Release v1.1.0: New features"
 git push origin v1.1.0
 
-# 3. Создайте release на GitHub
-# (через веб-интерфейс или GitHub CLI)
+# 3. Create release on GitHub
+# (via web interface or GitHub CLI)
 ```
 
 ---
 
-## 📊 Аналитика
+## 📊 Analytics
 
-### Включите GitHub Insights:
+### Enable GitHub Insights:
 
-1. **Перейдите в Insights**
-2. Отслеживайте:
+1. **Go to Insights**
+2. Track:
    - Stars
    - Forks
    - Clone activity
@@ -274,11 +274,11 @@ git push origin v1.1.0
 
 ---
 
-## 🤝 Вклад сообщества
+## 🤝 Community Contribution
 
-### Настройте Contributing Guidelines:
+### Configure Contributing Guidelines:
 
-Создайте `CONTRIBUTING.md`:
+Create `CONTRIBUTING.md`:
 
 ````markdown
 # Contributing to Memory Bank
@@ -312,34 +312,34 @@ cd antigravity-memory-bank
 
 ---
 
-## ✅ Checklist финальной проверки
+## ✅ Final Verification Checklist
 
-- [ ] Все файлы закоммичены
-- [ ] README.md обновлен с актуальными ссылками
-- [ ] LICENSE файл присутствует
-- [ ] install.sh имеет execute permissions
-- [ ] Template repository настроен
-- [ ] Topics добавлены
-- [ ] Первый release создан
-- [ ] Badges добавлены
-- [ ] CONTRIBUTING.md создан (опционально)
-- [ ] Протестирована установка из GitHub
-
----
-
-## 🎯 Результат
-
-После выполнения всех шагов у вас будет:
-
-✅ Публичный GitHub репозиторий
-✅ Template repository для быстрого старта
-✅ Release с ZIP архивом
-✅ Документация и badges
-✅ One-liner установка через curl
-✅ Готовность к распространению
+- [ ] All files committed
+- [ ] README.md updated with actual links
+- [ ] LICENSE file present
+- [ ] install.sh has execute permissions
+- [ ] Template repository configured
+- [ ] Topics added
+- [ ] First release created
+- [ ] Badges added
+- [ ] CONTRIBUTING.md created (optional)
+- [ ] Installation from GitHub tested
 
 ---
 
-**Версия документа**: 1.0
-**Последнее обновление**: 2025-12-03
+## 🎯 Result
+
+After completing all steps, you will have:
+
+✅ Public GitHub repository
+✅ Template repository for quick start
+✅ Release with ZIP archive
+✅ Documentation and badges
+✅ One-liner installation via curl
+✅ Ready for distribution
+
+---
+
+**Document Version**: 1.0
+**Last Updated**: 2025-12-03
 ```
