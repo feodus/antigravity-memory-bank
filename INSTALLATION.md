@@ -255,14 +255,18 @@ Antigravity will:
 2. **Create Files**:
 
    ```
-   .agent/memory/
-   ├── project-brief.md       ← You will need to edit
-   ├── product-vision.md      ← Created automatically
-   ├── context.md             ← Created automatically
-   ├── architecture.md        ← Created automatically
-   ├── tech-stack.md          ← Created automatically
-   └── patterns/
-       └── common-tasks.md    ← Empty for now
+    .agent/memory/
+    ├── docs/                  ← Documentation copies
+    ├── project-brief.md       ← You will need to edit
+    ├── product-vision.md      ← Created automatically
+    ├── context.md             ← Created automatically
+    ├── architecture.md        ← Created automatically
+    ├── tech-stack.md          ← Created automatically
+    └── patterns/
+        └── common-tasks.md    ← Empty for now
+
+    # Also creates in project root:
+    antigravity-memory-bank.md ← Rules file
    ```
 
 3. **Display Status**:
@@ -320,6 +324,7 @@ tree .agent/
 # Should have:
 # .agent/
 # ├── memory/
+# │   ├── docs/
 # │   └── patterns/
 # │       └── common-tasks.md
 # └── workflows/
@@ -333,7 +338,10 @@ ls -la .agent/workflows/
 # 3. Check access permissions
 test -r .agent/workflows/init-memory.md && echo "✓ Readable"
 
-# 4. Check Antigravity rules
+# 4. Check documentation
+test -d .agent/memory/docs && echo "✓ Docs installed"
+
+# 5. Check Antigravity rules
 # (ask in chat)
 ```
 

@@ -69,6 +69,7 @@ Projects using memory bank will have:
 your-project/
 └── .agent/
     ├── memory/                    # Memory bank (persistent)
+    │   ├── docs/                  # Documentation & Guides
     │   ├── project-brief.md       # Manual - project foundation
     │   ├── product-vision.md      # Auto - product goals
     │   ├── context.md             # Auto - current state
