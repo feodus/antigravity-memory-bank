@@ -41,7 +41,7 @@ install_from_source() {
         echo -e "${BLUE}→ Downloading files from GitHub...${NC}"
         
         # Clone repository to temp directory
-        git clone --depth 1 "$MEMORY_BANK_REPO" "$TEMP_DIR" 2>/dev/null || {
+        git clone --depth 1 "$MEMORY_BANK_REPO" "$TEMP_DIR" || {
             echo -e "${RED}✗ Error downloading from GitHub${NC}"
             echo -e "${YELLOW}  Try local installation${NC}"
             exit 1
@@ -202,7 +202,6 @@ cleanup() {
 
 # Main installation
 main() {
-    # Determine installation source
     echo -e "${BLUE}Choose installation source:${NC}"
     echo -e "  1) GitHub (download latest version)"
     echo -e "  2) Local files (use current directory)"
