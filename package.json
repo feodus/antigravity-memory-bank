@@ -1,6 +1,6 @@
 {
   "name": "antigravity-memory-bank",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Memory Bank system for Antigravity AI agent - persistent project knowledge across sessions",
   "keywords": [
     "antigravity",
