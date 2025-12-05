@@ -25,9 +25,9 @@ echo ""
 # Check if we're in a project directory
 if [ ! -d ".git" ] && [ ! -f "package.json" ] && [ ! -f "go.mod" ] && [ ! -f "Cargo.toml" ]; then
     echo -e "${YELLOW}⚠️  Warning: Doesn't look like project root${NC}"
-    echo -e "   Continue installation here? (y/n)"
+    echo -e "   Continue installation here? (Y/n)"
     read -r response </dev/tty
-    if [[ ! "$response" =~ ^[Yy]$ ]]; then
+    if [[ -n "$response" && ! "$response" =~ ^[Yy]$ ]]; then
         echo -e "${RED}✗ Installation cancelled${NC}"
         exit 1
     fi
@@ -63,6 +63,7 @@ create_structure() {
     
     mkdir -p .agent/workflows
     mkdir -p .agent/memory/patterns
+    mkdir -p .agent/memory/docs
     
     echo -e "${GREEN}✓ Directories created${NC}"
 }
@@ -96,28 +97,38 @@ copy_documentation() {
     
     # Documentation files
     if [ -f "$SOURCE_DIR/README.md" ]; then
-        cp "$SOURCE_DIR/README.md" .agent/memory/
-        echo -e "${GREEN}  ✓ README.md${NC}"
+        cp "$SOURCE_DIR/README.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/README.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/INSTALLATION.md" ]; then
-        cp "$SOURCE_DIR/INSTALLATION.md" .agent/memory/
-        echo -e "${GREEN}  ✓ INSTALLATION.md${NC}"
+        cp "$SOURCE_DIR/INSTALLATION.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/INSTALLATION.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/QUICKSTART.md" ]; then
-        cp "$SOURCE_DIR/QUICKSTART.md" .agent/memory/
-        echo -e "${GREEN}  ✓ QUICKSTART.md${NC}"
+        cp "$SOURCE_DIR/QUICKSTART.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/QUICKSTART.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/GITHUB_SETUP.md" ]; then
-        cp "$SOURCE_DIR/GITHUB_SETUP.md" .agent/memory/
-        echo -e "${GREEN}  ✓ GITHUB_SETUP.md${NC}"
+        cp "$SOURCE_DIR/GITHUB_SETUP.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/GITHUB_SETUP.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/CONTRIBUTING.md" ]; then
-        cp "$SOURCE_DIR/CONTRIBUTING.md" .agent/memory/
-        echo -e "${GREEN}  ✓ CONTRIBUTING.md${NC}"
+        cp "$SOURCE_DIR/CONTRIBUTING.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/CONTRIBUTING.md${NC}"
+    fi
+
+    if [ -f "$SOURCE_DIR/LICENSE" ]; then
+        cp "$SOURCE_DIR/LICENSE" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/LICENSE${NC}"
+    fi
+
+    if [ -f "$SOURCE_DIR/RELEASE_v1.0.0.md" ]; then
+        cp "$SOURCE_DIR/RELEASE_v1.0.0.md" .agent/memory/docs/
+        echo -e "${GREEN}  ✓ docs/RELEASE_v1.0.0.md${NC}"
     fi
 }
 
@@ -126,10 +137,10 @@ create_initial_files() {
     echo ""
     echo -e "${BLUE}→ Create initial memory files?${NC}"
     echo -e "  (Recommended to use ${YELLOW}/init-memory${NC} workflow for automatic analysis)"
-    echo -e "  Create templates now? (y/n)"
+    echo -e "  Create templates now? (Y/n)"
     read -r response </dev/tty
     
-    if [[ "$response" =~ ^[Yy]$ ]]; then
+    if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
         echo -e "${BLUE}  Copying templates...${NC}"
         
         if [ -d "$SOURCE_DIR/templates" ]; then
@@ -160,10 +171,10 @@ update_gitignore() {
     echo ""
     echo -e "${BLUE}→ Add .agent/memory/ to .gitignore?${NC}"
     echo -e "  (Recommended to commit memory files for team collaboration)"
-    echo -e "  Add to .gitignore? (y/n)"
+    echo -e "  Add to .gitignore? (Y/n)"
     read -r response </dev/tty
     
-    if [[ "$response" =~ ^[Yy]$ ]]; then
+    if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
         if [ -f ".gitignore" ]; then
             if ! grep -q ".agent/memory/" .gitignore; then
                 echo "" >> .gitignore
@@ -239,7 +250,7 @@ main() {
     echo ""
     echo -e "  4. Start working! Memory will load automatically"
     echo ""
-    echo -e "${BLUE}📚 Documentation: ${YELLOW}.agent/memory/README.md${NC}"
+    echo -e "${BLUE}📚 Documentation: ${YELLOW}.agent/memory/docs/README.md${NC}"
     echo ""
 }
 
