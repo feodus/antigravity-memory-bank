@@ -4,13 +4,20 @@ description: Initialize project memory bank
 
 # Initialize Project Memory Bank
 
-Creates the project memory bank structure in `.agent/memory/` with comprehensive project analysis.
+Creates the project memory bank structure with comprehensive project analysis.
 
 **CRITICAL**: Initialization is extremely important - it defines all future effectiveness. Be thorough!
 
 ## Steps
 
-### 1. Comprehensive Project Analysis
+### 1. Determine Memory Bank Mode
+
+Check if `.kilocode/rules/memory-bank/` exists.
+
+- **If detected**: Use **Kilocode Mode** (Target: `.kilocode/rules/memory-bank/`)
+- **Else**: Use **Antigravity Mode** (Target: `.agent/memory/`)
+
+### 2. Comprehensive Project Analysis
 
 Analyze the entire project:
 
@@ -21,71 +28,63 @@ Analyze the entire project:
 - **Dependencies**: NPM packages, external services
 - **Testing**: Test frameworks, coverage, patterns
 
-### 2. Create Folder Structure
+### 3. Create Folder Structure
+
+**Antigravity Mode**:
 
 ```bash
 mkdir -p .agent/memory/patterns
 ```
 
-### 3. Create project-brief.md
+**Kilocode Mode**:
 
-Create `.agent/memory/project-brief.md` with:
+```bash
+mkdir -p .kilocode/rules/memory-bank
+```
 
-- Project name and purpose
-- Core requirements
-- Main goals and success criteria
-- Key stakeholders (if applicable)
-- Project scope boundaries
+### 4. Create Foundation Files
 
-### 4. Create product-vision.md
+**Context**: Generate content with Project name, purpose, core requirements.
 
-Create `.agent/memory/product-vision.md` with:
+**Antigravity Mode**: Create `.agent/memory/project-brief.md`
+**Kilocode Mode**: Create `.kilocode/rules/memory-bank/brief.md`
 
-- Why this project exists
-- What problems it solves
-- Target users/audience
-- How it should work (high-level)
-- User experience goals
-- Success metrics
+### 5. Create Vision Files
 
-### 5. Create context.md
+**Context**: Generate content with Why this project exists, problems solved, user goals.
 
-Create `.agent/memory/context.md` with:
+**Antigravity Mode**: Create `.agent/memory/product-vision.md`
+**Kilocode Mode**: Create `.kilocode/rules/memory-bank/product.md`
 
-- Current work focus area
-- Recent significant changes
-- Next planned steps
-- Active branches/features (if applicable)
+### 6. Create Context File
 
-**Keep this SHORT and FACTUAL** - no speculation!
+**Context**: Generate content with Current work focus, recent changes, next steps.
 
-### 6. Create architecture.md
+**Antigravity Mode**: Create `.agent/memory/context.md`
+**Kilocode Mode**: Create `.kilocode/rules/memory-bank/context.md`
 
-Create `.agent/memory/architecture.md` with:
+### 7. Create Architecture File
 
-- System architecture overview (consider using mermaid diagrams)
-- Key components and their file paths
-- Design patterns in use (e.g., MVC, microservices)
-- Component relationships and data flow
-- Critical implementation details
-- Key directories and their purposes
+**Context**: Generate content with System architecture, design patterns, component relationships.
 
-### 7. Create tech-stack.md
+**Antigravity Mode**: Create `.agent/memory/architecture.md`
+**Kilocode Mode**: Create `.kilocode/rules/memory-bank/architecture.md`
 
-Create `.agent/memory/tech-stack.md` with:
+### 8. Create Tech Stack File
 
-- Programming languages and versions
-- Frameworks and major libraries
-- Development tools
-- Build system and tooling
-- Technical constraints
-- Testing frameworks
-- Deployment environment
-- External services/APIs
+**Context**: Generate content with Technologies, frameworks, development setup.
 
-### 8. Create patterns/common-tasks.md
+**Antigravity Mode**: Create `.agent/memory/tech-stack.md`
+**Kilocode Mode**: Create `.kilocode/rules/memory-bank/tech.md`
 
-Create `.agent/memory/patterns/common-tasks.md`:
+### 9. Create Tasks File
+
+**Context**: Initialize empty tasks file.
+
+**Antigravity Mode**: `.agent/memory/patterns/common-tasks.md`
+**Kilocode Mode**: `.kilocode/rules/memory-bank/tasks.md`
+
+Content:
 
 ```markdown
 # Common Tasks
@@ -97,9 +96,9 @@ This file documents repetitive tasks and their workflows.
 _No tasks documented yet. Use "add task" command after completing repetitive tasks._
 ```
 
-### 9. Display Memory Status
+### 10. Display Memory Status
 
-Show memory status marker:
+Show memory status marker (adjust filenames in display based on mode):
 
 ```
 🧠 **Project Memory**: Initialized
@@ -111,7 +110,7 @@ Show memory status marker:
    - Patterns: ✓ Ready for tasks
 ```
 
-### 10. Request User Review
+### 11. Request User Review
 
 Provide summary of findings and request review:
 
@@ -123,7 +122,7 @@ Provide summary of findings and request review:
 > - Microservices architecture with PostgreSQL
 > - Currently focused on payment integration
 >
-> Please review the files in `.agent/memory/` and correct any misunderstandings or add missing information. This will significantly improve our future interactions."
+> Please review the files in the memory bank folder and correct any misunderstandings or add missing information. This will significantly improve our future interactions."
 
 ## Post-Initialization Checklist
 

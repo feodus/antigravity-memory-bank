@@ -220,13 +220,24 @@ main() {
             exit 1
             ;;
     esac
-    
-    # Run installation steps
-    create_structure
-    copy_workflows
-    copy_documentation
-    create_initial_files
-    update_gitignore
+
+    echo ""
+    echo -e "${BLUE}Choose installation mode:${NC}"
+    echo -e "  1) Standard Antigravity (Recommended)"
+    echo -e "  2) Kilocode Compatibility Mode (Legacy/Cross-platform)"
+    echo -n "Your choice (1/2): "
+    read -r mode_choice </dev/tty
+
+    if [ "$mode_choice" = "2" ]; then
+        install_kilo_mode
+    else
+        # Standard installation steps
+        create_structure
+        copy_workflows
+        copy_documentation
+        create_initial_files
+        update_gitignore
+    fi
     
     # Cleanup temp files
     trap cleanup EXIT
@@ -239,18 +250,84 @@ main() {
     echo ""
     echo -e "${BLUE}📋 Next steps:${NC}"
     echo ""
-    echo -e "  1. Make sure Antigravity rules are configured"
-    echo -e "     ${YELLOW}(see antigravity-memory-bank.md)${NC}"
+    if [ "$mode_choice" = "2" ]; then
+         echo -e "  1. Copy rules from ${YELLOW}.kilocode/rules/memory-bank-instructions.md${NC}"
+         echo -e "     to your Agent's custom instructions."
+    else
+         echo -e "  1. Make sure Antigravity rules are configured"
+         echo -e "     ${YELLOW}(see antigravity-memory-bank.md)${NC}"
+    fi
     echo ""
     echo -e "  2. Initialize memory bank:"
     echo -e "     ${YELLOW}/init-memory${NC}"
     echo ""
-    echo -e "  3. Review created files in ${YELLOW}.agent/memory/${NC}"
+    echo -e "  3. Review created files in memory bank folder."
     echo ""
     echo -e "  4. Start working! Memory will load automatically"
     echo ""
     echo -e "${BLUE}📚 Documentation: ${YELLOW}.agent/memory/docs/README.md${NC}"
     echo ""
+}
+
+install_kilo_mode() {
+    echo ""
+    echo -e "${BLUE}→ Installing in Kilocode Compatibility Mode...${NC}"
+
+    # 1. Create structure
+    mkdir -p .kilocode/rules/memory-bank
+    mkdir -p .agent/workflows 
+    
+    # 2. Hybrid Rule File
+    echo -e "${BLUE}→ Creating hybrid rule file...${NC}"
+    
+    # Read original rules from memory-bank.md in source
+    if [ -f "$SOURCE_DIR/memory-bank.md" ]; then
+        cat "$SOURCE_DIR/memory-bank.md" > .kilocode/rules/memory-bank-instructions.md
+    else
+        echo -e "${RED}Error: memory-bank.md not found in source.${NC}"
+        exit 1
+    fi
+
+    # Append Adapter
+    cat >> .kilocode/rules/memory-bank-instructions.md <<EOF
+
+## Antigravity Adapter (Technical)
+
+Technical Note: For Antigravity, the concept of 'Beginning of EVERY task' is equivalent to the \`task_boundary\` tool call with \`Mode: PLANNING\`. When this event occurs, the agent must execute the instructions above to read the Memory Bank files from \`.kilocode/rules/memory-bank/\`.
+EOF
+
+    echo -e "${GREEN}  ✓ .kilocode/rules/memory-bank-instructions.md created${NC}"
+
+    # 3. Copy Templates to new names
+    echo -e "${BLUE}→ Copying templates...${NC}"
+    if [ -d "$SOURCE_DIR/templates" ]; then
+        # Map to Kilocode names
+        cp "$SOURCE_DIR/templates/project-brief.md" .kilocode/rules/memory-bank/brief.md 2>/dev/null && echo -e "${GREEN}  ✓ brief.md${NC}"
+        cp "$SOURCE_DIR/templates/product-vision.md" .kilocode/rules/memory-bank/product.md 2>/dev/null && echo -e "${GREEN}  ✓ product.md${NC}"
+        cp "$SOURCE_DIR/templates/context.md" .kilocode/rules/memory-bank/context.md 2>/dev/null && echo -e "${GREEN}  ✓ context.md${NC}"
+        cp "$SOURCE_DIR/templates/architecture.md" .kilocode/rules/memory-bank/architecture.md 2>/dev/null && echo -e "${GREEN}  ✓ architecture.md${NC}"
+        cp "$SOURCE_DIR/templates/tech-stack.md" .kilocode/rules/memory-bank/tech.md 2>/dev/null && echo -e "${GREEN}  ✓ tech.md${NC}"
+        cp "$SOURCE_DIR/templates/common-tasks.md" .kilocode/rules/memory-bank/tasks.md 2>/dev/null && echo -e "${GREEN}  ✓ tasks.md${NC}"
+    fi
+
+    # 4. Copy Workflows (Standard Antigravity location)
+    cp "$SOURCE_DIR/workflows/"*.md .agent/workflows/ 2>/dev/null
+    echo -e "${GREEN}  ✓ Workflows installed in .agent/workflows/${NC}"
+    
+    # Update .gitignore for .kilocode
+    echo ""
+    echo -e "${BLUE}→ Updating .gitignore...${NC}"
+    if [ -f ".gitignore" ]; then
+        if ! grep -q ".kilocode/" .gitignore; then
+             echo "" >> .gitignore
+             echo "# Kilocode Memory Bank" >> .gitignore
+             echo ".kilocode/" >> .gitignore
+             echo -e "${GREEN}  ✓ Added .kilocode/ to .gitignore${NC}"
+        fi
+    else
+        echo ".kilocode/" > .gitignore
+        echo -e "${GREEN}  ✓ Created .gitignore${NC}"
+    fi
 }
 
 # Run main
