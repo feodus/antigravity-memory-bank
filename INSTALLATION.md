@@ -34,7 +34,6 @@ The script automatically:
 - ✅ Creates `.agent/workflows/` and `.agent/memory/` structure
 - ✅ Copies necessary workflow files
 - ✅ Offers to create initial templates
-- ✅ Configures `.gitignore` (optional)
 
 ### 🌍 Language Selection
 
@@ -133,24 +132,50 @@ _No tasks documented yet. Use "add task" command after completing repetitive tas
 EOF
 ```
 
-### Step 4: (Optional) Configure .gitignore
+### Step 4: Configure .gitignore (Important!)
 
-Decide whether you want to commit memory files:
+> [!IMPORTANT] > **The installer does NOT create or modify the `.gitignore` file automatically!**
+> You must decide yourself which Memory Bank files to add to version control.
 
-**Option A: Commit Memory Files (Recommended for Teams)**
+Decide whether you want to version control Memory Bank files:
 
-- Don't add `.agent/memory/` to `.gitignore`
+**Option A: Commit Memory Bank Files (Recommended for Teams)**
+
+- **DO NOT add** `.agent/memory/` or `.kilocode/` to `.gitignore`
 - Memory files will be available to the entire team
 - Synchronizes knowledge between developers
+- **Best for:** team collaboration, open source projects
 
-**Option B: Local Memory Files**
+**Option B: Local Memory Bank Files (For Personal Projects)**
 
 ```bash
-# Add to .gitignore
+# For standard mode (.agent/)
 echo "" >> .gitignore
 echo "# Memory Bank files (local only)" >> .gitignore
 echo ".agent/memory/" >> .gitignore
+
+# For Kilocode compatibility mode (.kilocode/)
+echo "" >> .gitignore
+echo "# Kilocode Memory Bank files (local only)" >> .gitignore
+echo ".kilocode/" >> .gitignore
 ```
+
+**Hybrid Approach (Partial Versioning)**
+
+You can version only important files while excluding temporary ones:
+
+```bash
+# Include all Memory Bank files
+# but exclude temporary files
+
+echo "" >> .gitignore
+echo "# Memory Bank - exclude only temp files" >> .gitignore
+echo ".agent/memory/context.md" >> .gitignore
+echo ".agent/memory/patterns/common-tasks.md" >> .gitignore
+```
+
+> [!TIP]
+> For most projects, it's recommended to **version Memory Bank files** (Option A) as it helps new team members understand the project faster.
 
 ---
 
@@ -542,12 +567,14 @@ cd their-project
 ### For Individual Developers:
 
 - ✅ Use automatic installation via `install.sh`
+- ✅ **Configure `.gitignore`** according to your needs (see Step 4 in Manual Installation)
 - ✅ Commit memory files (useful history)
 - ✅ Regularly update `context.md`
 
 ### For Teams:
 
 - ✅ Create GitHub template repository
+- ✅ **Configure `.gitignore`** for team collaboration (usually commit all memory files)
 - ✅ Commit all memory files for knowledge sync
 - ✅ Assign responsibility for `project-brief.md`
 - ✅ Regular updates after sprints

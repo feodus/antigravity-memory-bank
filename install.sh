@@ -216,49 +216,7 @@ EOF
     fi
 }
 
-# Finalize .gitignore (called at the end of installation)
-finalize_gitignore() {
-    echo ""
-    echo -e "${BLUE}→ Add memory bank folders to .gitignore?${NC}"
-    echo -e "  (Recommended to commit memory files for team collaboration)"
-    echo -e "  Add to .gitignore? (Y/n)"
-    read -r response </dev/tty
-    
-    if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
-        # Create .gitignore if it doesn't exist
-        if [ ! -f ".gitignore" ]; then
-            touch .gitignore
-        fi
-        
-        local updated=false
-        
-        # Add .agent/ if not present
-        if ! grep -q "^\.agent/" .gitignore; then
-            if [ "$updated" = false ]; then
-                echo "" >> .gitignore
-                echo "# Memory Bank files" >> .gitignore
-                updated=true
-            fi
-            echo ".agent/" >> .gitignore
-            echo -e "${GREEN}  ✓ Added .agent/ to .gitignore${NC}"
-        fi
-        
-        # Add .kilocode/ if not present
-        if ! grep -q "^\.kilocode/" .gitignore; then
-            if [ "$updated" = false ]; then
-                echo "" >> .gitignore
-                echo "# Memory Bank files" >> .gitignore
-                updated=true
-            fi
-            echo ".kilocode/" >> .gitignore
-            echo -e "${GREEN}  ✓ Added .kilocode/ to .gitignore${NC}"
-        fi
-        
-        if [ "$updated" = false ]; then
-            echo -e "${YELLOW}  ⚠️  Folders already present in .gitignore${NC}"
-        fi
-    fi
-}
+
 
 # Cleanup
 cleanup() {
@@ -308,9 +266,6 @@ main() {
         copy_documentation
         create_initial_files
     fi
-    
-    # Finalize .gitignore (after all files are created)
-    finalize_gitignore
     
     # Cleanup temp files
     trap cleanup EXIT
