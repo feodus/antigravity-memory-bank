@@ -45,6 +45,7 @@ mkdir -p .kilocode/rules/memory-bank
 ### 4. Create Foundation Files
 
 **Context**: Generate content with Project name, purpose, core requirements.
+**CRITICAL**: You MUST run `git config user.name` to get the current user's name and use it for the "Created by" field in the brief.
 
 **Antigravity Mode**: Create `.agent/memory/project-brief.md`
 **Kilocode Mode**: Create `.kilocode/rules/memory-bank/brief.md`

@@ -1,6 +1,6 @@
 # Project Brief
 
-> **Created by**: [Developer name]  
+> **Created by**: [Git User Name]  
 > **Date**: [YYYY-MM-DD]  
 > **Last updated**: [YYYY-MM-DD]
 
