@@ -135,11 +135,15 @@ copy_workflows() {
 
 # Copy documentation files
 copy_documentation() {
+    local target_dir=$1
     echo ""
     echo -e "${BLUE}→ Copying documentation files...${NC}"
     
-    # Main rule file
-    if [ -f "$SOURCE_DIR/antigravity-memory-bank.md" ]; then
+    # Create docs directory
+    mkdir -p "$target_dir/docs"
+    
+    # Main rule file (only for standard mode)
+    if [ "$target_dir" = ".agent/memory" ] && [ -f "$SOURCE_DIR/antigravity-memory-bank.md" ]; then
         cp "$SOURCE_DIR/antigravity-memory-bank.md" .
         apply_language_rules "./antigravity-memory-bank.md"
         echo -e "${GREEN}  ✓ antigravity-memory-bank.md${NC}"
@@ -147,37 +151,37 @@ copy_documentation() {
     
     # Documentation files
     if [ -f "$SOURCE_DIR/README.md" ]; then
-        cp "$SOURCE_DIR/README.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/README.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/README.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/INSTALLATION.md" ]; then
-        cp "$SOURCE_DIR/INSTALLATION.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/INSTALLATION.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/INSTALLATION.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/QUICKSTART.md" ]; then
-        cp "$SOURCE_DIR/QUICKSTART.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/QUICKSTART.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/QUICKSTART.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/GITHUB_SETUP.md" ]; then
-        cp "$SOURCE_DIR/GITHUB_SETUP.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/GITHUB_SETUP.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/GITHUB_SETUP.md${NC}"
     fi
     
     if [ -f "$SOURCE_DIR/CONTRIBUTING.md" ]; then
-        cp "$SOURCE_DIR/CONTRIBUTING.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/CONTRIBUTING.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/CONTRIBUTING.md${NC}"
     fi
 
     if [ -f "$SOURCE_DIR/LICENSE" ]; then
-        cp "$SOURCE_DIR/LICENSE" .agent/memory/docs/
+        cp "$SOURCE_DIR/LICENSE" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/LICENSE${NC}"
     fi
 
     if [ -f "$SOURCE_DIR/RELEASE_v1.0.0.md" ]; then
-        cp "$SOURCE_DIR/RELEASE_v1.0.0.md" .agent/memory/docs/
+        cp "$SOURCE_DIR/RELEASE_v1.0.0.md" "$target_dir/docs/"
         echo -e "${GREEN}  ✓ docs/RELEASE_v1.0.0.md${NC}"
     fi
 }
@@ -263,7 +267,7 @@ main() {
         # Standard installation steps
         create_structure
         copy_workflows
-        copy_documentation
+        copy_documentation ".agent/memory"
         create_initial_files
     fi
     
@@ -343,7 +347,10 @@ EOF
         cp "$SOURCE_DIR/templates/common-tasks.md" .kilocode/rules/memory-bank/tasks.md 2>/dev/null && echo -e "${GREEN}  ✓ tasks.md${NC}"
     fi
 
-    # 4. Copy Workflows (Standard Antigravity location)
+    # 4. Copy Documentation files
+    copy_documentation ".kilocode"
+
+    # 5. Copy Workflows (Standard Antigravity location)
     cp "$SOURCE_DIR/workflows/"*.md .agent/workflows/ 2>/dev/null
     echo -e "${GREEN}  ✓ Workflows installed in .agent/workflows/${NC}"
 }
