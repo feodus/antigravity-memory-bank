@@ -5,6 +5,7 @@ Complete guide for adding the Memory Bank system to your project.
 ## 📋 Table of Contents
 
 - [Quick Installation](#quick-installation)
+- [Experimental: Kilocode Compatibility](#experimental-kilocode-compatibility)
 - [Manual Installation](#manual-installation)
 - [GitHub Installation](#github-installation)
 - [Antigravity Configuration](#antigravity-configuration)
@@ -50,6 +51,26 @@ cp /tmp/mb-temp/templates/common-tasks.md .agent/memory/patterns/
 # 4. Remove temporary folder
 rm -rf /tmp/mb-temp
 ```
+
+---
+
+## 🧪 Experimental: Kilocode Compatibility
+
+We are currently testing a new compatibility mode that follows the exact file structure of Kilocode (`.kilocode/rules/memory-bank/`).
+
+To use this experimental feature:
+
+```bash
+# Run installer from the feature branch
+curl -fsSL https://raw.githubusercontent.com/feodus/antigravity-memory-bank/feat/kilocode-compat/install.sh | bash
+```
+
+When prompted:
+
+1. Choose installation source (e.g., **GitHub**).
+2. Choose **Kilocode Compatibility Mode**.
+
+This will set up the Memory Bank using the original rules and structure compatible with other tools expecting Kilocode standards.
 
 ---
 
