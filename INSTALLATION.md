@@ -547,5 +547,9 @@ cd their-project
 
 ---
 
-**Document Version**: 1.0  
-**Last Updated**: 2025-12-03
+> **Disclaimer**: This project allows for compatibility with the Kilocode Memory Bank structure but is an independent implementation. "Kilocode" is a trademark of Kilo.Ai (or respective owners). This project is not affiliated with, endorsed by, or sponsored by Kilocode or Kilo.Ai.
+
+---
+
+**Document Version**: 1.1
+**Last Updated**: 2025-12-07
