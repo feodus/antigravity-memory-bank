@@ -36,6 +36,26 @@ The script automatically:
 - ✅ Offers to create initial templates
 - ✅ Configures `.gitignore` (optional)
 
+### 🌍 Language Selection
+
+During installation, you will be prompted to select your preferred language:
+
+1. **English** (Default)
+2. **Russian** (Русский)
+3. **Chinese** (Simplified)
+4. **Spanish** (Español)
+5. **Portuguese** (Português)
+6. **Japanese** (日本語)
+7. **German** (Deutsch)
+8. **French** (Français)
+9. **Hindi** (हिन्दी)
+10. **Arabic** (العربية)
+
+The selected language will be automatically configured in the AI rules, forcing the agent to:
+
+- Communicate with you in your chosen language
+- Generate all Memory Bank files in that language
+
 ### Option 2: Clone from GitHub
 
 ```bash

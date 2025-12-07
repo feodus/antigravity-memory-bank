@@ -40,6 +40,7 @@ kilocode-antigravity_rules/
    - ✅ Memory status markers
    - ✅ Workflows for initialization and updates
    - ✅ Pattern documentation
+   - ✅ **Multi-language support** (10+ languages)
 
 ### For Projects Using Memory Bank
 
