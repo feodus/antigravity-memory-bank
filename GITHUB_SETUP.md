@@ -1,5 +1,7 @@
 # GitHub Repository Setup Guide
 
+> **Disclaimer**: This project allows for compatibility with the Kilocode Memory Bank structure but is an independent implementation. "Kilocode" is a trademark of Kilo.Ai (or respective owners). This project is not affiliated with, endorsed by, or sponsored by Kilocode or Kilo.Ai.
+
 Step-by-step guide for creating a GitHub repository to distribute the Memory Bank system.
 
 ## 🎯 Goal

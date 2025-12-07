@@ -1,5 +1,7 @@
 # Quick Start: Memory Bank Installation
 
+> **Disclaimer**: This project allows for compatibility with the Kilocode Memory Bank structure but is an independent implementation. "Kilocode" is a trademark of Kilo.Ai (or respective owners). This project is not affiliated with, endorsed by, or sponsored by Kilocode or Kilo.Ai.
+
 ## 🎯 Three Installation Methods
 
 ### 1️⃣ Automatic Installation (Easiest)

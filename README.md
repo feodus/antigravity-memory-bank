@@ -1,5 +1,7 @@
 # Memory Bank System for Antigravity
 
+> **Disclaimer**: This project allows for compatibility with the Kilocode Memory Bank structure but is an independent implementation. "Kilocode" is a trademark of Kilo.Ai (or respective owners). This project is not affiliated with, endorsed by, or sponsored by Kilocode or Kilo.Ai.
+
 [![GitHub release](https://img.shields.io/github/release/feodus/antigravity-memory-bank.svg)](https://github.com/feodus/antigravity-memory-bank/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/feodus/antigravity-memory-bank.svg)](https://github.com/feodus/antigravity-memory-bank/stargazers)
@@ -250,6 +252,7 @@ Suggest memory update if significant
 ✅ **Status markers**: Visual feedback on memory state  
 ✅ **Context awareness**: Agent understands project before planning  
 ✅ **Pattern following**: Uses documented workflows automatically  
+✅ **Smart Authorship**: Automatically detects and uses Git user implementation for project briefs
 ✅ **Smart suggestions**: Recommends updates and task documentation
 
 ## 📚 Templates
