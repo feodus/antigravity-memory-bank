@@ -11,7 +11,6 @@ Comprehensive documentation and templates for implementing the Memory Bank syste
 ```
 kilocode-antigravity_rules/
 ├── antigravity-memory-bank.md   # Main rule file for Antigravity
-├── memory-bank.md                # Original Kilo Code rules (reference)
 ├── workflows/                    # Workflow files for projects
 │   ├── init-memory.md           # Initialize memory bank
 │   └── update-memory.md         # Update memory bank
@@ -361,4 +360,8 @@ This implementation is adapted from Kilo Code's Memory Bank concept for use with
 
 ---
 
-**Last updated**: 2025-12-03
+> **Disclaimer**: This project allows for compatibility with the Kilocode Memory Bank structure but is an independent implementation. "Kilocode" is a trademark of Kilo.Ai (or respective owners). This project is not affiliated with, endorsed by, or sponsored by Kilocode or Kilo.Ai.
+
+---
+
+**Last updated**: 2025-12-07

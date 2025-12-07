@@ -280,12 +280,14 @@ install_kilo_mode() {
     # 2. Hybrid Rule File
     echo -e "${BLUE}→ Creating hybrid rule file...${NC}"
     
-    # Read original rules from memory-bank.md in source
-    if [ -f "$SOURCE_DIR/memory-bank.md" ]; then
-        cat "$SOURCE_DIR/memory-bank.md" > .kilocode/rules/memory-bank-instructions.md
+    # Download original rules from source
+    echo -e "${BLUE}  Downloading original rules from kilo.ai...${NC}"
+    if curl -fsSL -o .kilocode/rules/memory-bank-instructions.md "https://kilo.ai/docs/downloads/memory-bank.md"; then
+        echo -e "${GREEN}  ✓ Downloaded original rules${NC}"
     else
-        echo -e "${RED}Error: memory-bank.md not found in source.${NC}"
-        exit 1
+        echo -e "${RED}✗ Failed to download rules. Please check your internet connection.${NC}"
+        echo -e "${YELLOW}  Creating placeholder rule file...${NC}"
+        echo "# Memory Bank Rules" > .kilocode/rules/memory-bank-instructions.md
     fi
 
     # Append Adapter
