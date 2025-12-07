@@ -216,28 +216,46 @@ EOF
     fi
 }
 
-# Create .gitignore entry (optional)
-update_gitignore() {
+# Finalize .gitignore (called at the end of installation)
+finalize_gitignore() {
     echo ""
-    echo -e "${BLUE}→ Add .agent/memory/ to .gitignore?${NC}"
+    echo -e "${BLUE}→ Add memory bank folders to .gitignore?${NC}"
     echo -e "  (Recommended to commit memory files for team collaboration)"
     echo -e "  Add to .gitignore? (Y/n)"
     read -r response </dev/tty
     
     if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
-        if [ -f ".gitignore" ]; then
-            if ! grep -q ".agent/memory/" .gitignore; then
+        # Create .gitignore if it doesn't exist
+        if [ ! -f ".gitignore" ]; then
+            touch .gitignore
+        fi
+        
+        local updated=false
+        
+        # Add .agent/ if not present
+        if ! grep -q "^\.agent/" .gitignore; then
+            if [ "$updated" = false ]; then
                 echo "" >> .gitignore
                 echo "# Memory Bank files" >> .gitignore
-                echo ".agent/memory/" >> .gitignore
-                echo -e "${GREEN}  ✓ .gitignore updated${NC}"
-            else
-                echo -e "${YELLOW}  ⚠️  Already present in .gitignore${NC}"
+                updated=true
             fi
-        else
-            echo "# Memory Bank files" > .gitignore
-            echo ".agent/memory/" >> .gitignore
-            echo -e "${GREEN}  ✓ .gitignore created${NC}"
+            echo ".agent/" >> .gitignore
+            echo -e "${GREEN}  ✓ Added .agent/ to .gitignore${NC}"
+        fi
+        
+        # Add .kilocode/ if not present
+        if ! grep -q "^\.kilocode/" .gitignore; then
+            if [ "$updated" = false ]; then
+                echo "" >> .gitignore
+                echo "# Memory Bank files" >> .gitignore
+                updated=true
+            fi
+            echo ".kilocode/" >> .gitignore
+            echo -e "${GREEN}  ✓ Added .kilocode/ to .gitignore${NC}"
+        fi
+        
+        if [ "$updated" = false ]; then
+            echo -e "${YELLOW}  ⚠️  Folders already present in .gitignore${NC}"
         fi
     fi
 }
@@ -289,8 +307,10 @@ main() {
         copy_workflows
         copy_documentation
         create_initial_files
-        update_gitignore
     fi
+    
+    # Finalize .gitignore (after all files are created)
+    finalize_gitignore
     
     # Cleanup temp files
     trap cleanup EXIT
@@ -371,21 +391,6 @@ EOF
     # 4. Copy Workflows (Standard Antigravity location)
     cp "$SOURCE_DIR/workflows/"*.md .agent/workflows/ 2>/dev/null
     echo -e "${GREEN}  ✓ Workflows installed in .agent/workflows/${NC}"
-    
-    # Update .gitignore for .kilocode
-    echo ""
-    echo -e "${BLUE}→ Updating .gitignore...${NC}"
-    if [ -f ".gitignore" ]; then
-        if ! grep -q ".kilocode/" .gitignore; then
-             echo "" >> .gitignore
-             echo "# Kilocode Memory Bank" >> .gitignore
-             echo ".kilocode/" >> .gitignore
-             echo -e "${GREEN}  ✓ Added .kilocode/ to .gitignore${NC}"
-        fi
-    else
-        echo ".kilocode/" > .gitignore
-        echo -e "${GREEN}  ✓ Created .gitignore${NC}"
-    fi
 }
 
 # Run main
