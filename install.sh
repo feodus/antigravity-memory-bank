@@ -15,9 +15,10 @@ NC='\033[0m' # No Color
 # Configuration
 MEMORY_BANK_REPO="https://github.com/feodus/antigravity-memory-bank"
 TEMP_DIR="/tmp/memory-bank-install-$$"
+SELECTED_LANG="English"
 
 echo -e "${BLUE}╔════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║   Memory Bank Installation Script         ║${NC}"
+echo -e "${BLUE}║   Memory Bank Installation Script          ║${NC}"
 echo -e "${BLUE}║   for Antigravity Agent                    ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════╝${NC}"
 echo ""
@@ -53,6 +54,54 @@ install_from_source() {
         SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
         SOURCE_DIR="$SCRIPT_DIR"
         echo -e "${BLUE}→ Using local files from: $SOURCE_DIR${NC}"
+    fi
+
+}
+
+# Function to select language
+select_language() {
+    echo ""
+    echo -e "${BLUE}Select your preferred language for the Memory Bank:${NC}"
+    echo -e "  1) English (Default)"
+    echo -e "  2) Russian (Русский)"
+    echo -e "  3) Chinese (Simplified) (简体中文)"
+    echo -e "  4) Spanish (Español)"
+    echo -e "  5) Portuguese (Português)"
+    echo -e "  6) Japanese (日本語)"
+    echo -e "  7) German (Deutsch)"
+    echo -e "  8) French (Français)"
+    echo -e "  9) Hindi (हिन्दी)"
+    echo -e "  10) Arabic (العربية)"
+    echo -n "Your choice (1-10) [1]: "
+    read -r lang_choice </dev/tty
+    
+    case $lang_choice in
+        2) SELECTED_LANG="Russian";;
+        3) SELECTED_LANG="Chinese (Simplified)";;
+        4) SELECTED_LANG="Spanish";;
+        5) SELECTED_LANG="Portuguese";;
+        6) SELECTED_LANG="Japanese";;
+        7) SELECTED_LANG="German";;
+        8) SELECTED_LANG="French";;
+        9) SELECTED_LANG="Hindi";;
+        10) SELECTED_LANG="Arabic";;
+        *) SELECTED_LANG="English";;
+    esac
+    
+    echo -e "${GREEN}✓ Selected: $SELECTED_LANG${NC}"
+}
+
+# Function to apply language rules
+apply_language_rules() {
+    local target_file=$1
+    if [ -f "$target_file" ] && [ "$SELECTED_LANG" != "English" ]; then
+        echo "" >> "$target_file"
+        echo "## Language Preferences" >> "$target_file"
+        echo "" >> "$target_file"
+        echo "The user has selected **$SELECTED_LANG** as the primary language for this project." >> "$target_file"
+        echo "- You MUST communicate with the user in $SELECTED_LANG." >> "$target_file"
+        echo "- You MUST generate all Memory Bank files and updates in $SELECTED_LANG." >> "$target_file"
+        echo -e "${GREEN}  ✓ Applied language rules ($SELECTED_LANG)${NC}"
     fi
 }
 
@@ -92,6 +141,7 @@ copy_documentation() {
     # Main rule file
     if [ -f "$SOURCE_DIR/antigravity-memory-bank.md" ]; then
         cp "$SOURCE_DIR/antigravity-memory-bank.md" .
+        apply_language_rules "./antigravity-memory-bank.md"
         echo -e "${GREEN}  ✓ antigravity-memory-bank.md${NC}"
     fi
     
@@ -202,6 +252,9 @@ cleanup() {
 
 # Main installation
 main() {
+    select_language
+
+    echo ""
     echo -e "${BLUE}Choose installation source:${NC}"
     echo -e "  1) GitHub (download latest version)"
     echo -e "  2) Local files (use current directory)"
@@ -245,7 +298,7 @@ main() {
     # Success message
     echo ""
     echo -e "${GREEN}╔════════════════════════════════════════════╗${NC}"
-    echo -e "${GREEN}║   ✓ Memory Bank installed successfully!   ║${NC}"
+    echo -e "${GREEN}║   ✓ Memory Bank installed successfully!    ║${NC}"
     echo -e "${GREEN}╚════════════════════════════════════════════╝${NC}"
     echo ""
     echo -e "${BLUE}📋 Next steps:${NC}"
@@ -299,6 +352,9 @@ Technical Note: For Antigravity, the concept of 'Beginning of EVERY task' is equ
 EOF
 
     echo -e "${GREEN}  ✓ .kilocode/rules/memory-bank-instructions.md created${NC}"
+    
+    # 2.1 Apply Language Rules
+    apply_language_rules ".kilocode/rules/memory-bank-instructions.md"
 
     # 3. Copy Templates to new names
     echo -e "${BLUE}→ Copying templates...${NC}"
